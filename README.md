@@ -13,11 +13,11 @@
 [JS ООП](js_oop.md)
 
 ## Jquery
-[jquery](jquery.md)
+[Шпаргалка jquery](jquery.md)
 
 ## Bash / Cmd
-[Bash](bash.md)  
-[Cmd](cmd.md)
+[Шпаргалка Bash](bash.md)  
+[Шпаргалка Cmd](cmd.md)
 
 ## Git
-[Git](git.md)
+[Шпаргалка Git](git.md)
