@@ -889,6 +889,178 @@ onmouseout  // Увод мышки с элемента
 
 #   AJAX
 
+## Современный метод fetch с промисами
+
+``` js
+let promise = fetch(url[, options]);
+
+url – //URL, на который сделать запрос,
+options – //необязательный объект с настройками запроса.
+//Свойства options:
+
+method – //метод запроса,
+headers – //заголовки запроса (объект),
+body – //тело запроса: FormData, Blob, строка и т.п.
+mode – //одно из: «same-origin», «no-cors», «cors», указывает, в каком режиме кросс-доменности предполагается делать запрос.
+credentials – //одно из: «omit», «same-origin», «include», указывает, пересылать ли куки и заголовки авторизации вместе с запросом.
+cache – //одно из «default», «no-store», «reload», «no-cache», «force-cache», «only-if-cached», указывает, как кешировать запрос.
+redirect – //можно поставить «follow» для обычного поведения при коде 30x (следовать редиректу) или «error» для интерпретации редиректа как ошибки.
+
+```
+### Использование
+``` js
+'use strict';
+
+fetch('/article/fetch/user.json')
+  .then(function(response) {
+    alert(response.headers.get('Content-Type')); // application/json; charset=utf-8
+    alert(response.status); // 200
+
+    return response.json();
+   })
+  .then(function(user) {
+    alert(user.name); // iliakan
+  })
+  .catch( alert );
+```
+Объект response кроме доступа к заголовкам `headers`, статусу `status` и некоторым другим полям ответа, даёт возможность прочитать его тело, в желаемом формате.
+*`response.arrayBuffer()`
+*`response.blob()`
+*`response.formData()`
+*`response.json()`
+*`response.text()`
+
+Соответствующий вызов возвращает промис, который, когда ответ будет получен, вызовет коллбэк с результатом.
+
+Примеры использования 
+
+HTML
+``` js
+fetch('/users.html')
+  .then(function(response) {
+    return response.text()
+  }).then(function(body) {
+    document.body.innerHTML = body
+  })
+```
+JSON
+``` js
+fetch('/users.json')
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    console.log('parsed json', json)
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+```
+Response metadata
+``` js
+fetch('/users.json').then(function(response) {
+  console.log(response.headers.get('Content-Type'))
+  console.log(response.headers.get('Date'))
+  console.log(response.status)
+  console.log(response.statusText)
+})
+```
+Post form
+``` js
+var form = document.querySelector('form')
+
+fetch('/users', {
+  method: 'POST',
+  body: new FormData(form)
+})
+```
+Post JSON
+``` js
+fetch('/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Hubot',
+    login: 'hubot',
+  })
+})
+```
+File upload
+``` js
+var input = document.querySelector('input[type="file"]')
+
+var data = new FormData()
+data.append('file', input.files[0])
+data.append('user', 'hubot')
+
+fetch('/avatars', {
+  method: 'POST',
+  body: data
+})
+```
+Error Handling
+```js
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response
+  } else {
+    var error = new Error(response.statusText)
+    error.response = response
+    throw error
+  }
+}
+
+function parseJSON(response) {
+  return response.json()
+}
+
+fetch('/users')
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(function(data) {
+    console.log('request succeeded with JSON response', data)
+  }).catch(function(error) {
+    console.log('request failed', error)
+  })
+```
+### Еще примеры с async/await
+```js
+// Последовательное посылание запросов: послать запрос http://localhost:8090/products,
+// подождать три секунды, послать следующий запрос http://localhost:8090/products/1
+// Это применяется, когда следующему запросу требуется результат предыдущего.
+async function getProducts() {
+  let responseProducts = await fetch('http://localhost:8090/products');
+  let products = await responseProducts.json(); // will not work without "await" word
+  await new Promise((resolve, reject) => setTimeout(resolve, 3000)); // this works like Sleep(3000) in threads
+  console.log(JSON.stringify(products, '', ' '));
+  let responseFirstProduct = await fetch('http://localhost:8090/products/1');
+  let firstProduct = await responseFirstProduct.json();
+  console.log(JSON.stringify(firstProduct, '', ' '));
+  return products;
+}
+getProducts();
+```
+
+```js
+// Параллельное выполнение запросов: запросы http://localhost:8090/products и http://localhost:8090/products/1 будут посланы в
+// сервер параллельно в момент вызова Promise.all. В .then этого Promise.all попадем (судя по всему) когда оба запроса отработают.
+// Там почему-то сделано так, что они возвращают тоже промисы, и надо повторить извлечение информации из них с помощью
+// let jrp = await rp.json() и let jrp1 = await rp1.json();
+// Это применяется, когда запросы не зависят друг от друга, и можно послать их одновременно
+// Третий вариант (самый красивый, потому что без вложенностей, код ровный):
+async function getProductsParallel3() {
+  let p = fetch('http://localhost:8090/products');
+  let p1 = fetch('http://localhost:8090/products/1');
+  let [rp, rp1] = await Promise.all([p, p1]); // запросы ушли одновременно
+  let [products, product1] = await Promise.all([rp.json(), rp1.json()]);
+  console.log(JSON.stringify(products, '', ' '));
+  console.log(JSON.stringify(product1, '', ' '));
+}
+getProductsParallel3();
+```
+
+## XMLHttpRequest
+
 ``` js
 var xhr = new XMLHttpRequest();
 
@@ -1041,4 +1213,108 @@ xhr.onprogress = function(event) {
   alert( 'Получено с сервера ' + event.loaded + ' байт из ' + event.total );
 }
 
+```
+
+# Примеры с промисами и async/await
+
+```js
+async function foo(text) {
+    return new Promise(resolve => {
+        setTimeout(()=>{
+            console.log(123);
+            resolve();
+        },2000);
+    });
+}
+
+(async function(){
+    await foo();
+    console.log(214214214);
+})();
+```
+
+Ожидание выполнение группы обещаний
+```js
+async function foo1(text) {
+    return new Promise(resolve => {
+        setTimeout(()=>{
+            console.log("called 1");
+            resolve(1);
+        },2000);
+    });
+}
+async function foo2(text) {
+    return new Promise(resolve => {
+        setTimeout(()=>{
+            console.log("called 2");
+            resolve(2);
+        },2000); //3000
+    });
+}
+async function foo3(text) {
+    return new Promise(resolve => {
+        setTimeout(()=>{
+            console.log("called 3");
+            resolve(3);
+        },2000);
+    });
+}
+
+(async function(){
+    //Если увеличить задержку одной из foo*(), то соответственно выполнится позже т.е. последним
+    // Но results передастся в том порядке в котором они заданы в Promise.all
+    Promise.all([foo1(),foo2(),foo3()]).then(results=>console.log(results));
+})();
+
+// Вывод в консоли будет следующий:
+/*
+called 1
+called 2
+called 3
+
+Array(3) [1, 2, 3] (results)
+*/
+// Если у foo2() у setTimeout поставить задержку например 3000, то вывод будет следующим:
+/*
+called 1
+called 3
+called 2
+
+Array(3) [1, 2, 3] (results)
+*/
+
+// Если поменять местами функции в Promise.all например так Promise.all([foo3(),foo2(),foo1()]), то вывод будет следующим:
+/*
+Array(3) [3, 2, 1] (results)
+*/
+```
+## Еще пример
+```js
+function resolveAfter2Seconds(x) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x);
+    }, 2000);
+  });
+}
+
+async function add1(x) {
+  const a = await resolveAfter2Seconds(20);
+  const b = await resolveAfter2Seconds(30);
+  return x + a + b;
+}
+
+add1(10).then(v => {
+  console.log(v);  // prints 60 after 4 seconds.
+});
+
+async function add2(x) {
+  const a = resolveAfter2Seconds(20);
+  const b = resolveAfter2Seconds(30);
+  return x + await a + await b;
+}
+
+add2(10).then(v => {
+  console.log(v);  // prints 60 after 2 seconds.
+});
 ```
