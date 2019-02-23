@@ -444,8 +444,8 @@ elem.children // Коллекция детей элемента
 elem.firstElementChild // Первый ребенок элемента  
 elem.lastElementChild  // Последний ребенок элемента
 
-elem.previousElementSubling // Предыдущий элемент от elem  
-elem.nextElementSubling // Следующий элемент после elem
+elem.previousElementSibling // Предыдущий элемент от elem  
+elem.nextElementSibling // Следующий элемент после elem
 
 elem.parentElement // Элемент родитель
 
