@@ -1318,3 +1318,4 @@ add2(10).then(v => {
   console.log(v);  // prints 60 after 2 seconds.
 });
 ```
+Так есть метод `Promise.race([...])` который вернет в качестве result тот результат промиса который первым выполнит обещание (resolve())
