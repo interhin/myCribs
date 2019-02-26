@@ -830,7 +830,28 @@ e.preventDefault();
 Это и есть всплытие событий, при этом this будет указывать на саму `form`, а `e.target` на `input` по которому кликнули
   
   `event.stopPropagation();` - Останавливает всплытие события вверх (но на самом эл-те оно сработает)
-  `event.stopImmediatePropagation();` - Дело тоже что и stopPropagation, но так же и отменяет событие на самом эл-те.
+  `event.stopImmediatePropagation();` - Дело тоже что и stopPropagation, но так же и отменяет другие обработчики события на самом эл-те.
+  
+  Пример для понимания разницы двух этих методов
+  
+  ```js
+	function handler(e) {
+	  console.log("handler 1");
+	}
+
+	function butHandler1(e) {
+	  console.log("1");
+	  e.stopPropagation(); // stopImmediatePropagation
+	}
+	function butHandler2(e) {
+	  console.log("2")
+	}
+
+	document.querySelector("body").addEventListener("click",handler);
+
+	document.querySelector(".but1").addEventListener("click",butHandler1);
+	document.querySelector(".but1").addEventListener("click",butHandler2);
+  ```
   
   
   ### Делегирование событий
