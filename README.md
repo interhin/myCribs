@@ -12,13 +12,13 @@
 [Шпаргалка по JS](js.md)  
 [JS ООП](js_oop.md)
 ### Важные темы с особенностями JS
-[Операторы](http://learn.javascript.ru/operators)
-[Операторы сравнения](http://learn.javascript.ru/comparison)
-[Побитовые операторы](http://learn.javascript.ru/bitwise-operators)
-[Логические операторы](http://learn.javascript.ru/logical-ops)
-[Преобразование примитивов](http://learn.javascript.ru/types-conversion)
-[Числа](http://learn.javascript.ru/number)
-[Строки](http://learn.javascript.ru/string)
+[Операторы](http://learn.javascript.ru/operators)  
+[Операторы сравнения](http://learn.javascript.ru/comparison)  
+[Побитовые операторы](http://learn.javascript.ru/bitwise-operators)  
+[Логические операторы](http://learn.javascript.ru/logical-ops)  
+[Преобразование примитивов](http://learn.javascript.ru/types-conversion)  
+[Числа](http://learn.javascript.ru/number)  
+[Строки](http://learn.javascript.ru/string)  
 [Дата и время](http://learn.javascript.ru/datetime)
 
 ## Jquery
