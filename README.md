@@ -27,7 +27,11 @@
 
 [Методы объектов, this контекст вызова](http://learn.javascript.ru/object-methods)  
 [Преобразование объектов](http://learn.javascript.ru/object-conversion)  
-[Создание объектов через конструктор](http://learn.javascript.ru/constructor-new)
+[Создание объектов через конструктор](http://learn.javascript.ru/constructor-new)  
+[Дескрипторы](http://learn.javascript.ru/descriptors-getters-setters)
+[call/apply](http://learn.javascript.ru/call-apply)  
+[bind](http://learn.javascript.ru/bind)  
+[Декораторы](http://learn.javascript.ru/decorators)  
 
 
 ## Jquery
