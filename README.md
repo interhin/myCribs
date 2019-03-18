@@ -33,6 +33,9 @@
 [bind](http://learn.javascript.ru/bind)  
 [Декораторы](http://learn.javascript.ru/decorators)  
 
+[setInterval/setTimeout](http://learn.javascript.ru/settimeout-setinterval)  
+[try/catch/finally](http://learn.javascript.ru/exception)  
+
 
 ## Jquery
 [Шпаргалка jquery](jquery.js)
