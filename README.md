@@ -12,6 +12,7 @@
 [Шпаргалка по JS](js.md)  
 [JS ООП](js_oop.md)
 ### Важные темы с особенностями JS
+##### Основы
 [Операторы](http://learn.javascript.ru/operators)  
 [Операторы сравнения](http://learn.javascript.ru/comparison)  
 [Побитовые операторы](http://learn.javascript.ru/bitwise-operators)  
@@ -21,10 +22,12 @@
 [Строки](http://learn.javascript.ru/string)  
 [Дата и время](http://learn.javascript.ru/datetime)  
 
+##### Замыкания, области видимости
 [Глобальный объект](http://learn.javascript.ru/global-object)  
 [Замыкания](http://learn.javascript.ru/closures)  
 [Управление памятью](http://learn.javascript.ru/memory-management)  
 
+##### Методы объектов и контекст вызова
 [Методы объектов, this контекст вызова](http://learn.javascript.ru/object-methods)  
 [Преобразование объектов](http://learn.javascript.ru/object-conversion)  
 [Создание объектов через конструктор](http://learn.javascript.ru/constructor-new)  
@@ -33,8 +36,32 @@
 [bind](http://learn.javascript.ru/bind)  
 [Декораторы](http://learn.javascript.ru/decorators)  
 
+##### Другие особенности
 [setInterval/setTimeout](http://learn.javascript.ru/settimeout-setinterval)  
 [try/catch/finally](http://learn.javascript.ru/exception)  
+
+##### ООП в функциональном стиле
+[Внешний и внутренний интерфейс](http://learn.javascript.ru/internal-external-interface)  
+[Геттеры/Сеттеры](http://learn.javascript.ru/getters-setters)  
+[Наследование](http://learn.javascript.ru/functional-inheritance)  
+
+##### ООП в прототипном стиле
+[Прототип](http://learn.javascript.ru/prototype)  
+[Свойство F.prototype](http://learn.javascript.ru/new-prototype)  
+[Встроенные "классы" в JavaScript](http://learn.javascript.ru/native-prototypes)  
+[Плюсы и минусы функционального и прототипного стиля](http://learn.javascript.ru/classes)  
+[Прототипное наследование](http://learn.javascript.ru/class-inheritance)  
+[instanceof](http://learn.javascript.ru/instanceof)  
+
+##### ES-2015
+[let/const](http://learn.javascript.ru/let-const)  
+[Деструктуризация](http://learn.javascript.ru/destructuring)  
+[Функции](http://learn.javascript.ru/es-function)  
+[Объекты и прототипы](http://learn.javascript.ru/es-object)  
+[Классы](http://learn.javascript.ru/es-class)  
+[Промисы](http://learn.javascript.ru/promise)  
+[Генераторы](http://learn.javascript.ru/generator)
+
 
 
 ## Jquery
