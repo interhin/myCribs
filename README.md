@@ -60,7 +60,8 @@
 [Объекты и прототипы](http://learn.javascript.ru/es-object)  
 [Классы](http://learn.javascript.ru/es-class)  
 [Промисы](http://learn.javascript.ru/promise)  
-[Генераторы](http://learn.javascript.ru/generator)
+[Генераторы](http://learn.javascript.ru/generator)  
+[Модули](http://learn.javascript.ru/modules)  
 
 
 
